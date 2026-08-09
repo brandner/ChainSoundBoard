@@ -54,3 +54,5 @@ icons/                    App icons (192px, 512px)
 _headers                  Cloudflare Pages cache-control rules
 wrangler.toml             Cloudflare Pages project config
 ```
+
+test deploy 

@@ -18,7 +18,7 @@ service worker needs to be served over `http(s)` (not `file://`) to register.
 
 ## Deploy to Cloudflare Pages
 
-Option A — CLI:
+Option A — CLI, from your own machine:
 
 ```
 npm install
@@ -26,9 +26,19 @@ npx wrangler login
 npm run deploy
 ```
 
-Option B — Git integration: push this repo to GitHub/GitLab, then in the
-Cloudflare dashboard create a Pages project connected to it. No build command
-is needed — set the build output directory to `/` (the repo root).
+Option B — Git integration (recommended): push this repo to GitHub, then in
+the Cloudflare dashboard create a Pages project connected to it. In
+**Settings → Builds & deployments → Build configuration**, leave both the
+**Build command** and **Deploy command** fields blank, and set the **Build
+output directory** to `/` (the repo root). With both fields blank, Cloudflare
+uses its classic direct-upload flow — it just uploads the static files,
+without needing to authenticate a `wrangler` deploy inside the build.
+
+(There's no `wrangler.toml` in this repo on purpose — its presence makes
+Cloudflare's build system auto-run `wrangler deploy`/`wrangler pages deploy`
+during the build, which needs Pages-Edit permissions that the build's
+auto-injected API token doesn't carry. Local CLI deploys in Option A don't
+hit that issue since `wrangler login` authenticates as you.)
 
 ## Offline support
 
@@ -52,7 +62,4 @@ manifest.webmanifest      PWA metadata / install prompt
 sounds/chain.ogg          The chain sound
 icons/                    App icons (192px, 512px)
 _headers                  Cloudflare Pages cache-control rules
-wrangler.toml             Cloudflare Pages project config
 ```
-
-test deploy 

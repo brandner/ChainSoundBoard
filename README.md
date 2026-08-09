@@ -26,19 +26,24 @@ npx wrangler login
 npm run deploy
 ```
 
-Option B — Git integration (recommended): push this repo to GitHub, then in
-the Cloudflare dashboard create a Pages project connected to it. In
-**Settings → Builds & deployments → Build configuration**, leave both the
-**Build command** and **Deploy command** fields blank, and set the **Build
-output directory** to `/` (the repo root). With both fields blank, Cloudflare
-uses its classic direct-upload flow — it just uploads the static files,
-without needing to authenticate a `wrangler` deploy inside the build.
+Option B — Git integration: push this repo to GitHub, then in the Cloudflare
+dashboard create a Pages project connected to it. This account's Pages
+projects run on Cloudflare's **Workers Builds** CI, which always requires a
+deploy command (it can't be left blank) and always authenticates via an API
+token — so in **Settings → Builds & deployments → Build configuration**:
 
-(There's no `wrangler.toml` in this repo on purpose — its presence makes
-Cloudflare's build system auto-run `wrangler deploy`/`wrangler pages deploy`
-during the build, which needs Pages-Edit permissions that the build's
-auto-injected API token doesn't carry. Local CLI deploys in Option A don't
-hit that issue since `wrangler login` authenticates as you.)
+- **Build command**: leave blank
+- **Build output directory**: `/` (the repo root)
+- **Deploy command**: `npx wrangler pages deploy .`
+
+That deploy command needs a `CLOUDFLARE_API_TOKEN` environment variable
+(**Settings → Environment variables**) set to a token that has the
+**Account → Cloudflare Pages → Edit** permission. Having Super Administrator
+account access is not the same thing — a token can be scoped narrower than
+the account role that created it, and the Pages-Edit permission specifically
+is what this deploy command calls. Create/edit the token at
+https://dash.cloudflare.com/profile/api-tokens, then set it as
+`CLOUDFLARE_API_TOKEN` on the Pages project.
 
 ## Offline support
 
@@ -62,4 +67,5 @@ manifest.webmanifest      PWA metadata / install prompt
 sounds/chain.ogg          The chain sound
 icons/                    App icons (192px, 512px)
 _headers                  Cloudflare Pages cache-control rules
+wrangler.toml             Cloudflare Pages project name / output dir
 ```

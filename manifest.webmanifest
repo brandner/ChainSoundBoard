@@ -1,0 +1,25 @@
+{
+  "name": "Chain Soundboard",
+  "short_name": "Chain",
+  "description": "Play the disc golf chain sound — works offline once loaded.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#082a20",
+  "theme_color": "#0d3d2e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

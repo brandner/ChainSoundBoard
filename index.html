@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Chain Soundboard</title>
+<meta name="description" content="Play the disc golf chain sound — works offline once loaded." />
+<meta name="theme-color" content="#0d3d2e" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Chain Soundboard</h1>
+    <p class="subtitle">Tap the basket for that sweet, sweet chain rattle.</p>
+
+    <button id="play-btn" class="basket-btn" aria-label="Play chain sound">
+      <img src="icons/icon-512.png" alt="" class="basket-icon" />
+      <span class="tap-label">Tap</span>
+    </button>
+
+    <p id="status" class="status" role="status" aria-live="polite">Loading sound…</p>
+  </main>
+
+  <audio id="chain-audio" src="sounds/chain.ogg" preload="auto"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>

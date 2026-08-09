@@ -2,10 +2,10 @@
   "name": "chain-soundboard",
   "private": true,
   "version": "1.0.0",
-  "description": "A tiny offline-capable soundboard for the disc golf chain noise, deployed on Cloudflare Pages.",
+  "description": "A tiny offline-capable soundboard for the disc golf chain noise, deployed as a Cloudflare Worker with static assets.",
   "scripts": {
-    "dev": "wrangler pages dev .",
-    "deploy": "wrangler pages deploy ."
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4"
